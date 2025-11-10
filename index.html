@@ -3,323 +3,216 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodePulse</title>
+  <title>Login - CodePulse</title>
+  <link rel="stylesheet" href="login.css" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script src="chart.js"></script>
+  <style>
+    .login-choice {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .login-btn {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--accent-color), var(--gold-accent));
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .login-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-btn {
+      margin-top: 1rem;
+      background: #6c757d;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
+
+    .login-form {
+      display: none;
+      margin-top: 1.5rem;
+    }
+
+    .login-section h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .error-message {
+      margin-top: 1rem;
+      color: #ff6b6b;
+      background: rgba(255, 107, 107, 0.1);
+      padding: 0.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #ff6b6b;
+      display: none;
+    }
+  </style>
 </head>
-<body>
-  <div class="navbar-container">
-    <button id="hamburgerMenu" class="hamburger-menu" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <aside class="sidebar">
-      <div class="logo">
-        <img src="images/logo.png" alt="CodePulse Logo" />
-      </div>
-      <!-- <div class="sidebar-header">
-        <h2>CodePulse</h2>
-      </div> -->
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#rank-check">Rank Check</a></li>
-          <li><a href="#stats">Stats</a></li>
-          <li><a href="#leaderboard">Leaderboard</a></li>
-          <li><a href="#announcements">Announcements</a></li>
-          <li><a href="#achievements">Achievements</a></li>
-          <li><a href="#contests">Contests</a></li>
-          <li><a href="#coding-tips">Coding Tips</a></li>
-        </ul>
-      </nav>
-      <div class="sidebar-footer">
-        <button id="themeToggle" onclick="toggleTheme()">Switch Theme</button>
-      </div>
-    </aside>
-  </div>
+<body class="login-page">
+  <header class="header">
+    <h1>Welcome to CodePulse</h1>
+  </header>
 
-    <main class="main-content">
-      <header class="header">
-        <h1 class="animate-on-scroll">Dashboard</h1>
-        <div class="nav-links">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="attendance.html">Attendance</a></li>
-            <li><a href="about.html">About</a></li>
-          </ul>
-        </div>
-      </header>
-      <div class="hero-banner">
-        <img src="images/banner.png" alt="CodePulse Hero Banner">
+  <main class="main-content">
+    <section class="login-section section">
+      <h2>Select Login Type</h2>
+      <p>Please choose how you want to login</p>
+
+      <!-- Initial Choice -->
+      <div class="login-choice" id="loginChoice">
+        <button class="login-btn" onclick="showStudentLogin()">Student Login</button>
+        <button class="login-btn" onclick="showAdminLogin()">Admin Login</button>
       </div>
 
-      <section id="profile" class="profile section">
-        <h2>Student Profile</h2>
-        <div class="profile-grid">
-          <div class="profile-item">
-            <strong>Roll Number:</strong> <span id="profileRoll"></span>
-          </div>
-          <div class="profile-item">
-            <strong>Name:</strong> <span id="profileName"></span>
-          </div>
-          <div class="profile-item">
-            <img id="profileAvatar" src="" alt="GitHub Avatar">
-          </div>
-          <div class="profile-item">
-            <strong>College:</strong> <span id="profileCollege"></span>
-          </div>
-          <div class="profile-item">
-            <strong>Branch:</strong> <span id="profileBranch"></span>
-          </div>
-          <div class="profile-item">
-            <strong>Semester:</strong> <span id="profileSemester"></span>
-          </div>
-          <div class="profile-item">
-            <strong>Course:</strong> BTech. Computer Science & Engineering
-          </div>
-          <div class="profile-item">
-            <strong>Enrollment:</strong> 2024-2028
-          </div>
-          <div class="profile-item">
-            <strong>Email:</strong> shivam@example.com
-          </div>
-          <div class="profile-item">
-            <strong>Location:</strong> Lucknow, Uttar Pradesh
-          </div>
-          <div class="profile-item">
-            <strong>Contribution Streak:</strong> <span id="profileStreak"></span>
-          </div>
-          <div class="profile-item">
-            <strong>Social Links:</strong>
-            <div id="socialLinks">
-              <a id="linkedinLink" href="#" target="_blank">LinkedIn</a> |
-              <a id="githubLink" href="#" target="_blank">GitHub</a> |
-              <a id="codeforcesLink" href="#" target="_blank">Codeforces</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="rank-check" class="input-section section">
-        <h2>Check Your Rank</h2>
+      <!-- Student Login -->
+      <form id="studentLoginForm" class="login-form">
+        <h2>Student Login</h2>
         <div class="input-group">
-          <input type="text" id="rollInput" placeholder="Enter Roll Number" />
-          <button onclick="fetchStudent()">Check Rank</button>
+          <label for="studentUsername">Roll Number:</label>
+          <input type="text" id="studentUsername" placeholder="Enter Roll Number" required />
         </div>
-      </section>
-
-      <section id="leaderboard" class="leaderboard section">
-        <h2>College Leaderboard</h2>
-        <div class="leaderboard-controls">
-          <input type="text" id="leaderboardSearch" class="leaderboard-search" placeholder="Search by name or roll number" aria-label="Search leaderboard">
-          <select id="filterBy" aria-label="Filter by">
-            <option value="overall">Overall</option>
-            <option value="branch">By Branch</option>
-            <option value="semester">By Semester</option>
-            <option value="platform">By Platform</option>
-          </select>
-          <select id="subFilter" aria-label="Sub filter">
-            <!-- Options will be populated dynamically -->
-          </select>
-          <select id="sortBy" aria-label="Sort by">
-            <option value="rank">By Rank</option>
-            <option value="problems">By Problems Solved</option>
-          </select>
+        <div class="input-group">
+          <label for="studentPassword">Password:</label>
+          <input type="password" id="studentPassword" placeholder="Enter Password" required />
         </div>
-        <div id="leaderboard-list" class="leaderboard-list">
-          <!-- Leaderboard items will be populated here -->
+        <button type="submit" class="login-btn">Login</button>
+        <button type="button" class="back-btn" onclick="goBack()">⬅ Back</button>
+        <div id="studentError" class="error-message"></div>
+      </form>
+
+      <!-- Admin Login -->
+      <form id="adminLoginForm" class="login-form">
+        <h2>Admin Login</h2>
+        <div class="input-group">
+          <label for="adminUsername">Admin ID:</label>
+          <input type="text" id="adminUsername" placeholder="Enter Admin ID" required />
         </div>
-      </section>
-
-      <section id="stats" class="stats section">
-        <h2>Platform Stats</h2>
-        <div class="stats-grid">
-          <div class="card" id="codechef">
-            <h3>CodeChef Rank Progression</h3>
-            <canvas id="codechefChart"></canvas>
-          </div>
-          <div class="card" id="leetcode">
-            <h3>LeetCode Rank Progression</h3>
-            <canvas id="leetcodeChart"></canvas>
-          </div>
-          <div class="card" id="hackerrank">
-            <h3>HackerRank Rank Progression</h3>
-            <canvas id="hackerrankChart"></canvas>
-          </div>
+        <div class="input-group">
+          <label for="adminPassword">Password:</label>
+          <input type="password" id="adminPassword" placeholder="Enter Password" required />
         </div>
-      </section>
-
-
-
-      <section id="announcements" class="announcements section">
-        <h2>Announcements</h2>
-        <div class="announcements-list">
-          <div class="announcement-item">
-            <strong>Academic:</strong> Join CodePulse internship program.
-          </div>
-          <div class="announcement-item">
-            <strong>Community:</strong> Submit GitHub contributions.
-          </div>
-          <div class="announcement-item">
-            <strong>Exams:</strong> Prepare for mock coding tests.
-          </div>
-          <div class="announcement-item">
-            <strong>Events:</strong> Coding Bootcamp starting next week.
-          </div>
-          <div class="announcement-item">
-            <strong>Updates:</strong> New platform features released.
-          </div>
-          <div class="announcement-item">
-            <strong>Opportunities:</strong> Hackathon registration open.
-          </div>
-        </div>
-      </section>
-
-      <section id="achievements" class="achievements section">
-        <h2>Achievements</h2>
-        <div class="achievements-grid">
-          <div class="achievement-item">
-            <div class="achievement-icon">🏆</div>
-            <div class="achievement-title">First Problem Solved</div>
-            <div class="achievement-description">Solved your first coding problem on any platform.</div>
-          </div>
-          <div class="achievement-item">
-            <div class="achievement-icon">🔥</div>
-            <div class="achievement-title">Streak Master</div>
-            <div class="achievement-description">Maintained a 30-day coding streak.</div>
-          </div>
-          <div class="achievement-item">
-            <div class="achievement-icon">⭐</div>
-            <div class="achievement-title">Top Contributor</div>
-            <div class="achievement-description">Ranked in the top 10 of the leaderboard.</div>
-          </div>
-          <div class="achievement-item">
-            <div class="achievement-icon">🎯</div>
-            <div class="achievement-title">Contest Winner</div>
-            <div class="achievement-description">Won first place in a coding contest.</div>
-          </div>
-          <div class="achievement-item">
-            <div class="achievement-icon">📚</div>
-            <div class="achievement-title">Learning Enthusiast</div>
-            <div class="achievement-description">Completed 50 tutorial problems.</div>
-          </div>
-          <div class="achievement-item">
-            <div class="achievement-icon">🚀</div>
-            <div class="achievement-title">Speed Demon</div>
-            <div class="achievement-description">Solved a problem in under 5 minutes.</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contests" class="contests section">
-        <h2>Upcoming Contests</h2>
-        <div class="contests-list">
-          <div class="contest-item">
-            <div class="contest-title">Weekly Coding Challenge</div>
-            <div class="contest-details">Date: Every Saturday | Time: 10:00 AM - 12:00 PM | Platform: CodeChef</div>
-            <a href="#" class="contest-link">Register Now</a>
-          </div>
-          <div class="contest-item">
-            <div class="contest-title">Algorithm Sprint</div>
-            <div class="contest-details">Date: Next Monday | Time: 2:00 PM - 4:00 PM | Platform: LeetCode</div>
-            <a href="#" class="contest-link">Register Now</a>
-          </div>
-          <div class="contest-item">
-            <div class="contest-title">Data Structures Marathon</div>
-            <div class="contest-details">Date: This Friday | Time: 6:00 PM - 8:00 PM | Platform: HackerRank</div>
-            <a href="#" class="contest-link">Register Now</a>
-          </div>
-          <div class="contest-item">
-            <div class="contest-title">Monthly Hackathon</div>
-            <div class="contest-details">Date: End of Month | Time: 24 Hours | Platform: CodePulse</div>
-            <a href="#" class="contest-link">Register Now</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="coding-tips" class="coding-tips section">
-        <h2>Coding Tips</h2>
-        <div class="tips-list">
-          <div class="tip-item">
-            <img src="https://img.freepik.com/free-vector/man-working-laptop-with-coffee-stationary-cartoon-vector-illustration_138676-2206.jpg?semt=ais_hybrid&w=740&q=80" alt="3D Avatar" class="tip-avatar">
-            <div class="tip-content">
-              <h4>Practice Daily</h4>
-              <p>Consistency is key. Solve at least one problem every day to build your skills gradually.</p>
-            </div>
-          </div>
-          <div class="tip-item">
-            <img src="https://pbs.twimg.com/ext_tw_video_thumb/1408235605159460864/pu/img/teHICGeTna6pgtep.jpg" alt="3D Avatar" class="tip-avatar">
-            <div class="tip-content">
-              <h4>Understand the Problem</h4>
-              <p>Read the problem statement carefully and identify the input/output requirements before coding.</p>
-            </div>
-          </div>
-          <div class="tip-item">
-            <img src="https://i.pinimg.com/474x/e5/63/46/e56346cf2916063035418d1ee9a7c5ad.jpg" alt="3D Avatar" class="tip-avatar">
-            <div class="tip-content">
-              <h4>Plan Your Solution</h4>
-              <p>Think about the algorithm and data structures needed before writing code.</p>
-            </div>
-          </div>
-          <div class="tip-item">
-            <img src="https://thumbs.dreamstime.com/b/software-language-programmer-avatar-software-language-programmer-avatar-vector-illustration-design-110589781.jpg" alt="3D Avatar" class="tip-avatar">
-            <div class="tip-content">
-              <h4>Debug Effectively</h4>
-              <p>Use print statements or debuggers to trace through your code and find issues.</p>
-            </div>
-          </div>
-          <div class="tip-item">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWc-TEiv3QajMjjQHKIGSDL6eD2NkQxehrn0mkzZ5E82aFlHjGDPDbSfsiuc-whB2ytJE&usqp=CAU" alt="3D Avatar" class="tip-avatar">
-            <div class="tip-content">
-              <h4>Learn from Others</h4>
-              <p>Study solutions from other programmers to understand different approaches.</p>
-            </div>
-          </div>
-          <div class="tip-item">
-            <img src="https://png.pngtree.com/png-clipart/20240705/original/pngtree-web-programmer-avatar-png-image_15495273.png" alt="3D Avatar" class="tip-avatar">
-            <div class="tip-content">
-              <h4>Optimize Your Code</h4>
-              <p>After solving a problem, think about ways to improve time and space complexity.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="resources" class="resources section">
-        <h2>Resources</h2>
-        <div class="resources-grid">
-          <div class="resource-category">
-            <h3>Tutorials</h3>
-            <ul>
-              <li><a href="https://www.geeksforgeeks.org/" target="_blank" rel="noopener noreferrer">GeeksforGeeks</a></li>
-              <li><a href="https://www.tutorialspoint.com/" target="_blank" rel="noopener noreferrer">TutorialsPoint</a></li>
-            </ul>
-          </div>
-          <div class="resource-category">
-            <h3>Blogs</h3>
-            <ul>
-              <li><a href="https://medium.com/topic/programming" target="_blank" rel="noopener noreferrer">Medium Programming</a></li>
-              <li><a href="https://dev.to/" target="_blank" rel="noopener noreferrer">Dev.to</a></li>
-            </ul>
-          </div>
-          <div class="resource-category">
-            <h3>Tools</h3>
-            <ul>
-              <li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">VS Code</a></li>
-              <li><a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-    </main>
+        <button type="submit" class="login-btn">Login</button>
+        <button type="button" class="back-btn" onclick="goBack()">⬅ Back</button>
+        <div id="adminError" class="error-message"></div>
+      </form>
+    </section>
+  </main>
 
   <footer class="footer">
     <p>&copy; 2025 CodePulse. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // --- Toggle Forms ---
+    function showStudentLogin() {
+      document.getElementById("loginChoice").style.display = "none";
+      document.getElementById("studentLoginForm").style.display = "block";
+    }
 
+    function showAdminLogin() {
+      document.getElementById("loginChoice").style.display = "none";
+      document.getElementById("adminLoginForm").style.display = "block";
+    }
+
+    function goBack() {
+      document.getElementById("loginChoice").style.display = "flex";
+      document.getElementById("studentLoginForm").style.display = "none";
+      document.getElementById("adminLoginForm").style.display = "none";
+      document.getElementById("studentError").style.display = "none";
+      document.getElementById("adminError").style.display = "none";
+    }
+
+    // --- Student Login Logic ---
+    document.getElementById("studentLoginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("studentUsername").value.trim();
+      const password = document.getElementById("studentPassword").value.trim();
+      const error = document.getElementById("studentError");
+
+
+
+         if (!username || !password) {
+        error.textContent = "Please enter Student ID and Password.";
+        error.style.display = "block";
+        return;
+      }
+
+      // Demo check (replace with backend)
+      if (username === "Shibu" && password === "1111") {
+
+          sessionStorage.setItem("codepulse_student", username);
+          sessionStorage.setItem("codepulse_role", "student");
+
+        alert("Student Login Successful! Redirecting...");
+        window.location.href = "dashboard.html";
+      } else {
+        error.textContent = "Invalid Student credentials.";
+        error.style.display = "block";
+      }
+
+      // if (!username || !password) {
+      //   error.textContent = "Please enter both Roll Number and Password.";
+      //   error.style.display = "block";
+      //   return;
+      // }
+
+
+      // // ✅ Here you can connect your backend authentication
+      // // For demo: accept any non-empty input and redirect
+      // alert("Login successful! Redirecting to your dashboard...");
+      // // window.location.href = "index.html"; // Dashboard page
+      // window.location.href = "dashboard.html"; // Dashboard page
+    });
+
+    // --- Admin Login Logic ---
+    document.getElementById("adminLoginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("adminUsername").value.trim();
+      const password = document.getElementById("adminPassword").value.trim();
+      const error = document.getElementById("adminError");
+
+      if (!username || !password) {
+        error.textContent = "Please enter Admin ID and Password.";
+        error.style.display = "block";
+        return;
+      }
+
+      // Demo check (replace with backend)
+      if (username === "admin" && password === "admin") {
+
+          sessionStorage.setItem("codepulse_admin", "true");
+           sessionStorage.setItem("codepulse_role", "admin");
+
+
+        alert("Admin Login Successful! Redirecting...");
+        window.location.href = "admin.html";
+      } else {
+        error.textContent = "Invalid Admin credentials.";
+        error.style.display = "block";
+      }
+    });
+
+  </script>
 </body>
 </html>
+
+
