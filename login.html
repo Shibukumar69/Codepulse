@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - CodePulse</title>
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-page">
+  <header class="header">
+    <h1>Login to CodePulse</h1>
+    <div class="nav-links">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="login-section section">
+      <h2>Student Login</h2>
+      <p>Please enter your AIMS portal credentials to access your dashboard.</p>
+      <form id="loginForm" class="login-form">
+        <div class="input-group">
+          <label for="username">Username :</label>
+          <input type="text" id="username" name="username" placeholder="Enter your roll number" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+      <div id="errorMessage" class="error-message" style="display: none;"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 CodePulse. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMessage = document.getElementById('errorMessage');
+
+      if (!username || !password) {
+        errorMessage.textContent = 'Please fill in both fields.';
+        errorMessage.style.display = 'block';
+        return;
+      }
+
+      // Simulate login success and redirect
+      // In a real app, this would send credentials to backend
+      alert('Login successful! Redirecting to dashboard...');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
