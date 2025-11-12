@@ -1,9 +1,6 @@
-# TODO: Add Styling for Admin Page
+# TODO: Fix Styling Issues in dashboard.html
 
-- [x] Set global styles (body, fonts, colors, reset)
-- [x] Style the admin container and header layout
-- [x] Style controls (buttons, search input, seat controls)
-- [x] Style the table (students table with striped rows, hover effects)
-- [x] Style the modal (overlay, card, close button)
-- [x] Style form elements (inputs, labels, grid layout)
-- [x] Add responsive design (media queries for mobile)
+## Tasks
+- [ ] Update dashboard.html: Add icon classes to profile-item divs for consistent icon display
+- [ ] Update style.css: Modify CSS to target .profile-item instead of p tags, add ::before pseudo-elements for icons, fix avatar image styling, remove unused old p tag styles
+- [ ] Verify changes: Check that icons appear correctly and styling is consistent in the profile section
